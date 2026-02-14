@@ -1,0 +1,105 @@
+:root {
+    --maroon: #550000;
+    --darkmaroon: #330000;
+    --white: #FFFFFF;
+    --solidblack: #000000;
+    --mustard: #FFD700; 
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px 60px;
+    position: relative;
+    z-index: 1500;
+}
+.container{
+    width: 100%;
+    min-height: 100vh;
+   
+    position: relative;  
+}
+
+.logo img{
+    width: 150px;
+    height: auto;
+}
+
+/* Hide checkbox */
+#menu-toggle {
+    display: none;
+}
+
+/* Hamburger Button */
+.hamburger {
+    width: 35px;
+    height: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+
+    position: absolute;     
+    top: 60px;           
+    right: 60px;         
+    z-index: 3000;       
+}
+
+
+.hamburger span {
+    height: 4px;
+    background: var(--solidblack);
+    border-radius: 2px;
+    transition: 0.3s ease;
+}
+
+/* Slide Menu */
+.site {
+    position: fixed;
+    top: 0;
+    right: -300px;   
+    width: 300px;
+    height: 100vh;
+    background: var(--maroon);
+    display: flex;
+    flex-direction: column;
+    padding: 120px 30px;
+    gap: 30px;
+    transition: right 0.4s ease;
+    z-index: 1000;
+}
+
+/* Show menu when checked */
+#menu-toggle:checked ~ .site {
+    right: 0;
+}
+
+/* Animate hamburger into X */
+#menu-toggle:checked + .hamburger span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+}
+
+#menu-toggle:checked + .hamburger span:nth-child(2) {
+    opacity: 0;
+}
+
+#menu-toggle:checked + .hamburger span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* Nav link style */
+.site a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 18px;
+    transition: 0.3s;
+}
+
+.site a:hover {
+    color: var(--mustard);
+}

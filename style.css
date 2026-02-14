@@ -10,9 +10,11 @@
     padding: 0;
     box-sizing: border-box;
 }
+
 .container{
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
+   
     position: relative;  
 
     background: 
@@ -26,46 +28,114 @@
         background-position: center;
         background-repeat: no-repeat;
 }
-.logo{
-    display: flex;
-}
-.logo img{
-    width: 10vw;
-    height: 10vh;
-}
-header{
+header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 30px 50px;
+    padding: 30px 60px;
+    position: relative;
+    z-index: 1500;
 }
-.site{
+
+.logo img{
+    width: 150px;
+    height: auto;
+}
+
+/* Hide checkbox */
+#menu-toggle {
+    display: none;
+}
+
+/* Hamburger Button */
+.hamburger {
+    width: 35px;
+    height: 25px;
     display: flex;
-    gap: 80px;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+
+    position: fixed;     
+    top: 60px;           
+    right: 60px;         
+    z-index: 3000;       
 }
+
+
+.hamburger span {
+    height: 4px;
+    background: var(--white);
+    border-radius: 2px;
+    transition: 0.3s ease;
+}
+
+/* Slide Menu */
+.site {
+    position: fixed;
+    top: 0;
+    right: -300px;   
+    width: 300px;
+    height: 100vh;
+    background: var(--maroon);
+    display: flex;
+    flex-direction: column;
+    padding: 120px 30px;
+    gap: 30px;
+    transition: right 0.4s ease;
+    z-index: 1000;
+}
+
+/* Show menu when checked */
+#menu-toggle:checked ~ .site {
+    right: 0;
+}
+
+/* Animate hamburger into X */
+#menu-toggle:checked + .hamburger span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+}
+
+#menu-toggle:checked + .hamburger span:nth-child(2) {
+    opacity: 0;
+}
+
+#menu-toggle:checked + .hamburger span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* Nav link style */
 .site a {
-    text-decoration: none;
     color: var(--white);
+    text-decoration: none;
+    font-size: 18px;
+    transition: 0.3s;
 }
+
+.site a:hover {
+    color: var(--mustard);
+}
+
 .umtext-container{
-    height: 80px;
-    display:flex;
-    align-items: center;
-    padding-top: 320px;
-    padding-left: 60px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    min-height: 100vh;
+    padding: 50px 60px 0 60px;
+
+    
 }
-.enroll-now-button{
-    padding: 10px 15px;
-}
+
 .um-texts h1{
     color: var(--mustard);
-    font-size: 7rem;
+    font-size: 8rem;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 .um-texts p{
     color: var(--white);
     font-size: 20px;
     font-family: Arial, Helvetica, sans-serif;
+    margin-bottom: 20px;
 
 }
 .enroll-now-button{
@@ -77,13 +147,95 @@ header{
     border:none;
     border-radius: 12px;
     text-decoration: none;
-    transition: background 0.3s;
+    transition:  0.3s ease;
 }
 .enroll-now-button:hover{
     background-color: var(--darkmaroon);
+    
 }
 .enroll-now-button a{
     color: var(--white);
     text-decoration: none;
 }
+.vision{
+    padding: 50px;
+    background-color: var(--white);
+    display: flex;
+    justify-content: flex-end; 
+    text-align: right;
+    margin-top: -150px;
+}
+.mission{
+    margin-top: -150px;
+    padding: 60px;
+    background-color: var(--white);
+    display: flex;
+    justify-content: flex-start; 
+    text-align: left;
+}
+.vision h1,
+.mission h1{
+    color: var(--maroon);
+    margin-bottom: 20px;
+    font-size: 4rem;
+}
+.vision p,
+.mission p{
+    color: var(--solidblack);
+    margin-bottom: 4px;
+    font-size: 25px;
+}
 
+/* for pictures below the vision and mission */
+.facilities {
+    width: 30%;                
+    margin: 50px auto;         
+    padding: 10px;
+    background-color: var(--mustard);
+    text-align: center;        
+    border-radius: 15px;       
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.facilities h1{
+    text-align: center;  
+}
+.carousel {
+    width: 100%;
+    height: 100vh; 
+    overflow: hidden;
+    position: relative;
+}
+
+.slides {
+    display: flex;
+    width: calc(100% * 6);
+    height: 100%;
+    animation: slide 60s infinite; 
+}
+.slides img {
+    width: 100vw;       
+    height: 100vh;      
+    object-fit: cover;  
+    flex-shrink: 0;
+}
+
+/* Slow sliding animation */
+@keyframes slide {
+    0%   { transform: translateX(0); }
+    16.66% { transform: translateX(-100vw); }
+    33.33% { transform: translateX(-200vw); }
+    50%  { transform: translateX(-300vw); }
+    66.66% { transform: translateX(-400vw); }
+    83.33% { transform: translateX(-500vw); }
+    100% { transform: translateX(0); }
+}
+
+footer {
+    height: 50%;
+    width: auto;
+    background-color: var(--maroon);
+    color: var(--white);
+    text-align: center;
+    padding: 20px;
+}
